@@ -131,7 +131,7 @@ impl Notification : cmp::Eq {
         match self {
             Exit(e0a, e1a) => {
                 match *other {
-                    Exit(e0b, e1b) => e0a == e0b && e1a == e1b
+                    Exit(e0b, e1b) => e0a == e0b && e1a.eq(&e1b)
                 }
             }
         }
@@ -1423,7 +1423,7 @@ impl LocalData: Eq {
     pure fn eq(&&other: LocalData) -> bool unsafe {
         let ptr_a: (uint, uint) = unsafe::reinterpret_cast(&self);
         let ptr_b: (uint, uint) = unsafe::reinterpret_cast(&other);
-        return ptr_a == ptr_b;
+        return ptr_a.eq(&ptr_b);
     }
     pure fn ne(&&other: LocalData) -> bool { !self.eq(other) }
 }
