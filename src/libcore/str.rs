@@ -795,29 +795,29 @@ pure fn gt(a: &str, b: &str) -> bool {
 
 impl &str: Eq {
     #[inline(always)]
-    pure fn eq(&&other: &str) -> bool {
-        eq_slice(self, other)
+    pure fn eq(other: &(&str)) -> bool {
+        eq_slice(self, *other)
     }
     #[inline(always)]
-    pure fn ne(&&other: &str) -> bool { !self.eq(other) }
+    pure fn ne(other: &(&str)) -> bool { !self.eq(other) }
 }
 
 impl ~str: Eq {
     #[inline(always)]
-    pure fn eq(&&other: ~str) -> bool {
-        eq_slice(self, other)
+    pure fn eq(other: &~str) -> bool {
+        eq_slice(self, *other)
     }
     #[inline(always)]
-    pure fn ne(&&other: ~str) -> bool { !self.eq(other) }
+    pure fn ne(other: &~str) -> bool { !self.eq(other) }
 }
 
 impl @str: Eq {
     #[inline(always)]
-    pure fn eq(&&other: @str) -> bool {
-        eq_slice(self, other)
+    pure fn eq(other: &@str) -> bool {
+        eq_slice(self, *other)
     }
     #[inline(always)]
-    pure fn ne(&&other: @str) -> bool { !self.eq(other) }
+    pure fn ne(other: &@str) -> bool { !self.eq(other) }
 }
 
 impl ~str : Ord {

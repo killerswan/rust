@@ -40,15 +40,15 @@ pure fn lt<T: Ord>(v1: &T, v2: &T) -> bool {
 }
 
 pure fn le<T: Ord Eq>(v1: &T, v2: &T) -> bool {
-    v1.lt(v2) || v1.eq(v2)
+    v1.lt(v2) || (*v1).eq(v2)
 }
 
 pure fn eq<T: Eq>(v1: &T, v2: &T) -> bool {
-    v1.eq(v2)
+    (*v1).eq(v2)
 }
 
 pure fn ne<T: Eq>(v1: &T, v2: &T) -> bool {
-    v1.ne(v2)
+    (*v1).ne(v2)
 }
 
 pure fn ge<T: Ord>(v1: &T, v2: &T) -> bool {

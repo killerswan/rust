@@ -125,10 +125,10 @@ enum State {
 }
 
 impl State: Eq {
-    pure fn eq(&&other: State) -> bool {
-        (self as uint) == (other as uint)
+    pure fn eq(other: &State) -> bool {
+        (self as uint) == (*other as uint)
     }
-    pure fn ne(&&other: State) -> bool { !self.eq(other) }
+    pure fn ne(other: &State) -> bool { !self.eq(other) }
 }
 
 struct BufferHeader {

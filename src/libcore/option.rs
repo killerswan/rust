@@ -261,7 +261,8 @@ impl<T: Eq> Option<T> : Eq {
             Some(self_contents) => {
                 match *other {
                     None => false,
-                    Some(other_contents) => (&self_contents).eq(&other_contents)
+                    Some(other_contents)
+                      => (&self_contents).eq(&other_contents)
                 }
             }
         }

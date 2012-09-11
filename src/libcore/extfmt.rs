@@ -389,8 +389,8 @@ mod rt {
     enum pad_mode { pad_signed, pad_unsigned, pad_nozero, pad_float }
 
     impl pad_mode: Eq {
-        pure fn eq(&&other: pad_mode) -> bool {
-            match (self, other) {
+        pure fn eq(other: &pad_mode) -> bool {
+            match (self, *other) {
                 (pad_signed, pad_signed) => true,
                 (pad_unsigned, pad_unsigned) => true,
                 (pad_nozero, pad_nozero) => true,
@@ -401,7 +401,7 @@ mod rt {
                 (pad_float, _) => false
             }
         }
-        pure fn ne(&&other: pad_mode) -> bool { !self.eq(other) }
+        pure fn ne(other: &pad_mode) -> bool { !self.eq(other) }
     }
 
     fn pad(cv: conv, &s: ~str, mode: pad_mode) -> ~str {

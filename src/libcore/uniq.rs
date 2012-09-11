@@ -3,8 +3,8 @@
 use cmp::{Eq, Ord};
 
 impl<T:Eq> ~const T : Eq {
-    pure fn eq(&&other: ~const T) -> bool { *self == *other }
-    pure fn ne(&&other: ~const T) -> bool { *self != *other }
+    pure fn eq(other: &~const T) -> bool { (*self).eq(&**other) }
+    pure fn ne(other: &~const T) -> bool { !self.eq(other) }
 }
 
 impl<T:Ord> ~const T : Ord {

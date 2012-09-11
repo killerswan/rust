@@ -90,8 +90,8 @@ enum Task {
 }
 
 impl Task : cmp::Eq {
-    pure fn eq(&&other: Task) -> bool { *self == *other }
-    pure fn ne(&&other: Task) -> bool { !self.eq(other) }
+    pure fn eq(other: &Task) -> bool { *self == **other }
+    pure fn ne(other: &Task) -> bool { !self.eq(other) }
 }
 
 /**
