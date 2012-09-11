@@ -190,8 +190,8 @@ pure fn cmp(a: char, b: char) -> int {
 }
 
 impl char: Eq {
-    pure fn eq(&&other: char) -> bool { self == other }
-    pure fn ne(&&other: char) -> bool { self != other }
+    pure fn eq(other: &char) -> bool { self == *other }
+    pure fn ne(other: &char) -> bool { self != *other }
 }
 
 #[test]

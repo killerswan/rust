@@ -111,13 +111,13 @@ enum TaskResult {
 }
 
 impl TaskResult: Eq {
-    pure fn eq(&&other: TaskResult) -> bool {
-        match (self, other) {
+    pure fn eq(other: &TaskResult) -> bool {
+        match (self, *other) {
             (Success, Success) | (Failure, Failure) => true,
             (Success, _) | (Failure, _) => false
         }
     }
-    pure fn ne(&&other: TaskResult) -> bool { !self.eq(other) }
+    pure fn ne(other: &TaskResult) -> bool { !self.eq(other) }
 }
 
 /// A message type for notifying of task lifecycle events
@@ -127,16 +127,16 @@ enum Notification {
 }
 
 impl Notification : cmp::Eq {
-    pure fn eq(&&other: Notification) -> bool {
+    pure fn eq(other: &Notification) -> bool {
         match self {
             Exit(e0a, e1a) => {
-                match other {
+                match *other {
                     Exit(e0b, e1b) => e0a == e0b && e1a == e1b
                 }
             }
         }
     }
-    pure fn ne(&&other: Notification) -> bool { !self.eq(other) }
+    pure fn ne(other: &Notification) -> bool { !self.eq(other) }
 }
 
 /// Scheduler modes

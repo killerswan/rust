@@ -415,8 +415,8 @@ pure fn cos(x: float) -> float { f64::cos(x as f64) as float }
 pure fn tan(x: float) -> float { f64::tan(x as f64) as float }
 
 impl float: Eq {
-    pure fn eq(&&other: float) -> bool { self == other }
-    pure fn ne(&&other: float) -> bool { self != other }
+    pure fn eq(other: &float) -> bool { self == *other }
+    pure fn ne(other: &float) -> bool { self != *other }
 }
 
 impl float: Ord {

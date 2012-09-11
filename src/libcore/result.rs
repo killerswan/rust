@@ -357,23 +357,23 @@ fn unwrap_err<T, U>(+res: Result<T, U>) -> U {
 }
 
 impl<T:Eq,U:Eq> Result<T,U> : Eq {
-    pure fn eq(&&other: Result<T,U>) -> bool {
+    pure fn eq(other: &Result<T,U>) -> bool {
         match self {
             Ok(e0a) => {
-                match other {
-                    Ok(e0b) => e0a == e0b,
+                match *other {
+                    Ok(e0b) => &e0a == &e0b,
                     _ => false
                 }
             }
             Err(e0a) => {
-                match other {
-                    Err(e0b) => e0a == e0b,
+                match *other {
+                    Err(e0b) => &e0a == &e0b,
                     _ => false
                 }
             }
         }
     }
-    pure fn ne(&&other: Result<T,U>) -> bool { !self.eq(other) }
+    pure fn ne(other: &Result<T,U>) -> bool { !self.eq(other) }
 }
 
 #[cfg(test)]

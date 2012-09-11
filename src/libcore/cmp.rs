@@ -25,14 +25,14 @@ trait Ord {
 #[cfg(notest)]
 #[lang="eq"]
 trait Eq {
-    pure fn eq(&&other: self) -> bool;
-    pure fn ne(&&other: self) -> bool;
+    pure fn eq(other: &self) -> bool;
+    pure fn ne(other: &self) -> bool;
 }
 
 #[cfg(test)]
 trait Eq {
-    pure fn eq(&&other: self) -> bool;
-    pure fn ne(&&other: self) -> bool;
+    pure fn eq(other: &self) -> bool;
+    pure fn ne(other: &self) -> bool;
 }
 
 pure fn lt<T: Ord>(v1: &T, v2: &T) -> bool {

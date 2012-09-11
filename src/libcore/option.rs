@@ -250,23 +250,23 @@ impl<T: Copy> Option<T> {
 }
 
 impl<T: Eq> Option<T> : Eq {
-    pure fn eq(&&other: Option<T>) -> bool {
+    pure fn eq(other: &Option<T>) -> bool {
         match self {
             None => {
-                match other {
+                match *other {
                     None => true,
                     Some(_) => false
                 }
             }
             Some(self_contents) => {
-                match other {
+                match *other {
                     None => false,
-                    Some(other_contents) => self_contents.eq(other_contents)
+                    Some(other_contents) => (&self_contents).eq(&other_contents)
                 }
             }
         }
     }
-    pure fn ne(&&other: Option<T>) -> bool { !self.eq(other) }
+    pure fn ne(other: &Option<T>) -> bool { !self.eq(other) }
 }
 
 #[test]

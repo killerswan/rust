@@ -68,20 +68,20 @@ impl<A: Copy, B: Copy> (~[A], ~[B]): ExtendedTupleOps<A,B> {
 }
 
 impl<A: Eq, B: Eq> (A, B): Eq {
-    pure fn eq(&&other: (A, B)) -> bool {
+    pure fn eq(other: &((A, B))) -> bool {
         // XXX: This would be a lot less wordy with ref bindings, but I don't
         // trust that they work yet.
         match self {
             (self_a, self_b) => {
-                match other {
+                match *other {
                     (other_a, other_b) => {
-                        self_a.eq(other_a) && self_b.eq(other_b)
+                        self_a.eq(&other_a) && self_b.eq(&other_b)
                     }
                 }
             }
         }
     }
-    pure fn ne(&&other: (A, B)) -> bool { !self.eq(other) }
+    pure fn ne(other: &((A, B))) -> bool { !self.eq(other) }
 }
 
 impl<A: Ord, B: Ord> (A, B): Ord {
@@ -105,22 +105,22 @@ impl<A: Ord, B: Ord> (A, B): Ord {
 }
 
 impl<A: Eq, B: Eq, C: Eq> (A, B, C): Eq {
-    pure fn eq(&&other: (A, B, C)) -> bool {
+    pure fn eq(other: &((A, B, C))) -> bool {
         // XXX: This would be a lot less wordy with ref bindings, but I don't
         // trust that they work yet.
         match self {
             (self_a, self_b, self_c) => {
-                match other {
+                match *other {
                     (other_a, other_b, other_c) => {
-                        self_a.eq(other_a) &&
-                        self_b.eq(other_b) &&
-                        self_c.eq(other_c)
+                        self_a.eq(&other_a) &&
+                        self_b.eq(&other_b) &&
+                        self_c.eq(&other_c)
                     }
                 }
             }
         }
     }
-    pure fn ne(&&other: (A, B, C)) -> bool { !self.eq(other) }
+    pure fn ne(other: &((A, B, C))) -> bool { !self.eq(other) }
 }
 
 impl<A: Ord, B: Ord, C: Ord> (A, B, C): Ord {

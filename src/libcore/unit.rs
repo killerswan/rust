@@ -5,8 +5,8 @@
 use cmp::{Eq, Ord};
 
 impl () : Eq {
-    pure fn eq(&&_other: ()) -> bool { true }
-    pure fn ne(&&_other: ()) -> bool { false }
+    pure fn eq(_other: &()) -> bool { true }
+    pure fn ne(_other: &()) -> bool { false }
 }
 
 impl () : Ord {

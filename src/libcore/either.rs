@@ -127,23 +127,23 @@ pure fn unwrap_right<T,U>(+eith: Either<T,U>) -> U {
 }
 
 impl<T:Eq,U:Eq> Either<T,U> : Eq {
-    pure fn eq(&&other: Either<T,U>) -> bool {
+    pure fn eq(other: &Either<T,U>) -> bool {
         match self {
             Left(a) => {
-                match other {
-                    Left(b) => a.eq(b),
+                match *other {
+                    Left(b) => a.eq(&b),
                     Right(_) => false
                 }
             }
             Right(a) => {
-                match other {
+                match *other {
                     Left(_) => false,
-                    Right(b) => a.eq(b)
+                    Right(b) => a.eq(&b)
                 }
             }
         }
     }
-    pure fn ne(&&other: Either<T,U>) -> bool { !self.eq(other) }
+    pure fn ne(other: &Either<T,U>) -> bool { !self.eq(other) }
 }
 
 #[test]
