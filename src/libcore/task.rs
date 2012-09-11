@@ -1420,12 +1420,12 @@ trait LocalData { }
 impl<T: Owned> @T: LocalData { }
 
 impl LocalData: Eq {
-    pure fn eq(other: &LocalData) -> bool unsafe {
+    pure fn eq(other: &@LocalData) -> bool unsafe {
         let ptr_a: (uint, uint) = unsafe::reinterpret_cast(&self);
         let ptr_b: (uint, uint) = unsafe::reinterpret_cast(other);
         return ptr_a.eq(&ptr_b);
     }
-    pure fn ne(other: &LocalData) -> bool { !self.eq(other) }
+    pure fn ne(other: &@LocalData) -> bool { !self.eq(other) }
 }
 
 // We use dvec because it's the best data structure in core. If TLS is used
